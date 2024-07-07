@@ -3,6 +3,7 @@ import { PageModule } from "./page/page.module";
 import { WebsiteModule } from "./website/website.module";
 import { AnalysisResultModule } from "./analysisResult/analysisResult.module";
 import { AccessibilityIssueModule } from "./accessibilityIssue/accessibilityIssue.module";
+import { ReadmeModule } from "./Readme/readme.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -19,6 +20,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     WebsiteModule,
     AnalysisResultModule,
     AccessibilityIssueModule,
+    ReadmeModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
