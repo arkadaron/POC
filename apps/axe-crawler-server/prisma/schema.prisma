@@ -1,0 +1,39 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model CrawlResult {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pageUrl   String?
+  result    Json?
+  website   Website? @relation(fields: [websiteId], references: [id])
+  websiteId String?
+}
+
+model Website {
+  id           String        @id @default(cuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  url          String?
+  crawlDepth   Int?
+  crawlResults CrawlResult[]
+  crawlOptions CrawlOption[]
+  readme       String?
+}
+
+model CrawlOption {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  optionValue String?
+  optionName  String?
+  website     Website? @relation(fields: [websiteId], references: [id])
+  websiteId   String?
+}
