@@ -50,6 +50,12 @@ model AccessibilityIssue {
   analysisResultId String?
 }
 
+model AxeResult {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum EnumAccessibilityIssueSeverity {
   Option1
 }

@@ -21,6 +21,10 @@ import { AccessibilityIssueList } from "./accessibilityIssue/AccessibilityIssueL
 import { AccessibilityIssueCreate } from "./accessibilityIssue/AccessibilityIssueCreate";
 import { AccessibilityIssueEdit } from "./accessibilityIssue/AccessibilityIssueEdit";
 import { AccessibilityIssueShow } from "./accessibilityIssue/AccessibilityIssueShow";
+import { AxeResultList } from "./axeResult/AxeResultList";
+import { AxeResultCreate } from "./axeResult/AxeResultCreate";
+import { AxeResultEdit } from "./axeResult/AxeResultEdit";
+import { AxeResultShow } from "./axeResult/AxeResultShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={AccessibilityIssueEdit}
           create={AccessibilityIssueCreate}
           show={AccessibilityIssueShow}
+        />
+        <Resource
+          name="AxeResult"
+          list={AxeResultList}
+          edit={AxeResultEdit}
+          create={AxeResultCreate}
+          show={AxeResultShow}
         />
       </Admin>
     </div>
