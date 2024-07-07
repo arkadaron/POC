@@ -1,0 +1,61 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Page {
+  id              String           @id @default(cuid())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  title           String?
+  content         String?
+  website         Website?         @relation(fields: [websiteId], references: [id])
+  websiteId       String?
+  analysisResults AnalysisResult[]
+}
+
+model Website {
+  id              String           @id @default(cuid())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  name            String?
+  url             String?
+  pages           Page[]
+  analysisResults AnalysisResult[]
+}
+
+model AnalysisResult {
+  id                  String               @id @default(cuid())
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  summary             String?
+  website             Website?             @relation(fields: [websiteId], references: [id])
+  websiteId           String?
+  accessibilityIssues AccessibilityIssue[]
+  page                Page?                @relation(fields: [pageId], references: [id])
+  pageId              String?
+}
+
+model AccessibilityIssue {
+  id               String                          @id @default(cuid())
+  createdAt        DateTime                        @default(now())
+  updatedAt        DateTime                        @updatedAt
+  description      String?
+  severity         EnumAccessibilityIssueSeverity?
+  analysisResult   AnalysisResult?                 @relation(fields: [analysisResultId], references: [id])
+  analysisResultId String?
+}
+
+model AxeResult {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum EnumAccessibilityIssueSeverity {
+  Option1
+}
